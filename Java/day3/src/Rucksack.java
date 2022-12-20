@@ -1,9 +1,11 @@
 public class Rucksack {
+    String items;
     String compartment1;
     String compartment2;
     char sharedItem;
 
     public Rucksack(String items) {
+        this.items = items;
         int half = items.length() / 2;
         this.compartment1 = items.substring(0, half);;
         this.compartment2 = items.substring(half);

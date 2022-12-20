@@ -16,8 +16,16 @@ public class Problem {
             File file = new File(filename);
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                processLine(line);
+                Group group = new Group();
+                for (int i = 0; i < 3; ++i) {
+                    String line = reader.nextLine();
+                    Rucksack rucksack = new Rucksack(line);
+                    group.rucksacks.add(rucksack);
+                }
+
+                sumOfPriorities += group.getPriorityOfBadge();
+
+                // processLine(line);
             }
             reader.close();
         } catch (FileNotFoundException e) {
