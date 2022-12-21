@@ -20,8 +20,15 @@ for line in drawing[:-1]:
 # Move crates according to the procedure
 for step in procedure:
     moves, old, new = (int(i) for i in step.replace(" from ", ",").replace(" to ", ",").split(","))
-    for move in range(moves):
-        stacks[new-1].append(stacks[old-1].pop())
+
+    # The 1st star
+    # for move in range(moves):
+    #     stacks[new-1].append(stacks[old-1].pop())
+
+    # The 2nd star
+    crates_to_move = stacks[old-1][-moves:]
+    del stacks[old-1][-moves:]
+    stacks[new-1].extend(crates_to_move)
 
 # Print the answer
 for stack in stacks:
