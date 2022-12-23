@@ -21,12 +21,14 @@ for motion in motions:
         if abs(distance) >= 2:
             tail += complex(np.sign(distance.real), np.sign(distance.imag))
             visited.add(tail)
+
 print(len(visited))
 
 # The 2nd star
 rope = [0 + 0j for _ in range(10)]
 visited = set()
 visited.add(rope[9])
+
 for motion in motions:
     direction, steps = motion.split()
     for step in range(int(steps)):
@@ -36,4 +38,5 @@ for motion in motions:
             if abs(distance) >= 2:
                 rope[i] += complex(np.sign(distance.real), np.sign(distance.imag))
             visited.add(rope[9])
+
 print(len(visited))
