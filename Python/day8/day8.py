@@ -45,29 +45,23 @@ class Tree:
         return distance
 
     def scenic_score(self) -> int:
-        return self.viewing_distance("left")*self.viewing_distance("right")*self.viewing_distance("up")*self.viewing_distance("down")
+        return self.viewing_distance("left") \
+               * self.viewing_distance("right") \
+               * self.viewing_distance("up") \
+               * self.viewing_distance("down")
 
 
 # Read and process input
 filename = "input.txt"
 with open(filename) as f:
-    data = f.read().strip()
-lines = [line for line in data.split("\n")]
+    lines = [line.strip() for line in f.readlines()]
 
 trees = np.array([[Tree(i, j, int(height)) for j, height in enumerate(line)] for i, line in enumerate(lines)])
 
 # The 1st star
-visible = 0
-for row in trees:
-    for tree in row:
-        if tree.is_visible():
-            visible += 1
+visible = sum([tree.is_visible() for tree in trees.flatten()])
 print(visible)
 
 # The 2nd star
-highest_scenic_score = 0
-for row in trees:
-    for tree in row:
-        if tree.scenic_score() > highest_scenic_score:
-            highest_scenic_score = tree.scenic_score()
+highest_scenic_score = max([tree.scenic_score() for tree in trees.flatten()])
 print(highest_scenic_score)

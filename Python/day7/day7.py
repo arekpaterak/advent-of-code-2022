@@ -14,15 +14,14 @@ class Directory:
         self.directories: list[Directory] = []
         self.parent: None | Directory = None
 
-    def size(self):
+    def size(self) -> int:
         return sum([file.size for file in self.files]) + sum([d.size() for d in self.directories])
 
 
-# Read and process input
+# Read and process an input
 filename = "input.txt"
 with open(filename) as f:
-    data = f.read().strip()
-lines = [line for line in data.split("\n")]
+    lines = [line.strip() for line in f.readlines()]
 
 directories = []
 current = None
@@ -51,15 +50,11 @@ for line in lines:
 
 # The 1st star
 size_limit = 100000
-print(sum([dir.size() for dir in directories if dir.size() <= size_limit]))
+print(sum([dir.size() for dir in directories if (dir.size() <= size_limit)]))
 
 # The 2nd star
 disk_space = 70000000
 needed_space = 30000000
 unused_space = disk_space - directories[0].size()
-to_delete = []
-for dir in directories:
-    if unused_space + dir.size() > needed_space:
-        to_delete.append(dir)
-
+to_delete = [dir for dir in directories if (unused_space + dir.size() > needed_space)]
 print(min(to_delete, key=lambda x: x.size()).size())
