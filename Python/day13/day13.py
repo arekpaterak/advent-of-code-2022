@@ -20,7 +20,7 @@ def compare(left: int | list, right: int | list) -> int:
 
 # Read and process an input
 test = False
-filename = "input.txt" if not test else "example.txt"
+filename = "example.txt" if test else "input.txt"
 with open(filename) as f:
     pairs = [[*map(eval, pair.split())] for pair in f.read().split("\n\n")]
 

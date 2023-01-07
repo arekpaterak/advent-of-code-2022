@@ -30,7 +30,11 @@ class Monkey:
         self.monkeys.append(self)
 
     def __str__(self) -> str:
-        return f"Monkey {self.number}:\n" + "  Starting items: " + ", ".join(str(item) for item in self.items) + "\n"
+        return (
+            f"Monkey {self.number}:\n  Starting items: "
+            + ", ".join(str(item) for item in self.items)
+            + "\n"
+        )
 
     def turn(self) -> None:
         while self.items:
@@ -69,7 +73,7 @@ class Test:
 
 # Read and process an input
 test = False
-filename = "input.txt" if not test else "example.txt"
+filename = "example.txt" if test else "input.txt"
 with open(filename) as f:
     data = f.read().split("\n\n")
 
@@ -78,7 +82,7 @@ for part in data:
     monkey = Monkey(lines)
 
 # The 2nd star
-for round in range(1, 10001):
+for _ in range(1, 10001):
     for monkey in Monkey.monkeys:
         monkey.turn()
 

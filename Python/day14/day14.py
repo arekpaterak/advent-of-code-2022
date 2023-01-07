@@ -52,7 +52,7 @@ class SandSimulator:
 
 # Read and process an input
 test = True
-filename = "input.txt" if not test else "example.txt"
+filename = "example.txt" if test else "input.txt"
 with open(filename) as f:
     scan = [line.strip() for line in f.readlines()]
 

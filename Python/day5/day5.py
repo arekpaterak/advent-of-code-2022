@@ -1,7 +1,7 @@
 # Read file
 filename = "input.txt"
 data = open(filename).read().strip()
-lines = [line for line in data.split("\n")]
+lines = list(data.split("\n"))
 
 # Split the data to a drawing of the starting stacks of crates and the rearrangement procedure
 empty_line = lines.index("")

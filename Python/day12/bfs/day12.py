@@ -15,7 +15,12 @@ class HeightMap:
             result = []
             candidates = [(position[0]-1, position[1]), (position[0], position[1]+1), (position[0]+1, position[1]), (position[0], position[1]-1)]
             for a in candidates:
-                if not (a[0] < 0 or a[1] < 0 or a[0] >= visited.shape[0] or a[1] >= visited.shape[1]):
+                if (
+                    a[0] >= 0
+                    and a[1] >= 0
+                    and a[0] < visited.shape[0]
+                    and a[1] < visited.shape[1]
+                ):
                     result.append(a)
             return result
 
@@ -47,7 +52,7 @@ class HeightMap:
 
 # Read and process an input
 test = False
-filename = "input.txt" if not test else "example.txt"
+filename = "example.txt" if test else "input.txt"
 with open(filename) as f:
     data = [list(line.strip()) for line in f.readlines()]
 

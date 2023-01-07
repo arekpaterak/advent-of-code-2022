@@ -10,12 +10,10 @@ move = {'U': 1j, 'D': -1j, 'R': 1, 'L': -1}
 # The 1st star
 head = 0 + 0j
 tail = 0 + 0j
-visited = set()
-visited.add(tail)
-
+visited = {tail}
 for motion in motions:
     direction, steps = motion.split()
-    for step in range(int(steps)):
+    for _ in range(int(steps)):
         head += move[direction]
         distance = head - tail
         if abs(distance) >= 2:
@@ -26,12 +24,10 @@ print(len(visited))
 
 # The 2nd star
 rope = [0 + 0j for _ in range(10)]
-visited = set()
-visited.add(rope[9])
-
+visited = {rope[9]}
 for motion in motions:
     direction, steps = motion.split()
-    for step in range(int(steps)):
+    for _ in range(int(steps)):
         rope[0] += move[direction]
         for i in range(1, 10):
             distance = rope[i-1] - rope[i]

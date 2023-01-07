@@ -15,7 +15,9 @@ class Directory:
         self.parent: None | Directory = None
 
     def size(self) -> int:
-        return sum([file.size for file in self.files]) + sum([d.size() for d in self.directories])
+        return sum(file.size for file in self.files) + sum(
+            d.size() for d in self.directories
+        )
 
 
 # Read and process an input
@@ -50,7 +52,7 @@ for line in lines:
 
 # The 1st star
 size_limit = 100000
-print(sum([dir.size() for dir in directories if (dir.size() <= size_limit)]))
+print(sum(dir.size() for dir in directories if (dir.size() <= size_limit)))
 
 # The 2nd star
 disk_space = 70000000

@@ -25,7 +25,7 @@ class HeightMap:
 
 # Read and process an input
 test = False
-filename = "input.txt" if not test else "example.txt"
+filename = "example.txt" if test else "input.txt"
 with open(filename) as f:
     data = [[*line.strip()] for line in f.readlines()]
 

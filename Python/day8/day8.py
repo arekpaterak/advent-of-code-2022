@@ -59,9 +59,9 @@ with open(filename) as f:
 trees = np.array([[Tree(i, j, int(height)) for j, height in enumerate(line)] for i, line in enumerate(lines)])
 
 # The 1st star
-visible = sum([tree.is_visible() for tree in trees.flatten()])
+visible = sum(tree.is_visible() for tree in trees.flatten())
 print(visible)
 
 # The 2nd star
-highest_scenic_score = max([tree.scenic_score() for tree in trees.flatten()])
+highest_scenic_score = max(tree.scenic_score() for tree in trees.flatten())
 print(highest_scenic_score)
